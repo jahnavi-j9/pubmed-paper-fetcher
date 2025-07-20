@@ -19,13 +19,12 @@ def write_ascii_table_to_file(data: List[Dict], filename: str):
     headers = list(data[0].keys())
     rows = [[clean_cell(row.get(h)) for h in headers] for row in data]
 
-    # Only write the ASCII table to file
+    # Create ASCII table string
     ascii_table = tabulate(rows, headers=headers, tablefmt="grid")
 
+    # Write only to file (not printing to terminal)
     with open(filename, mode="w", encoding="utf-8") as f:
         f.write(ascii_table)
 
-    # Also show in terminal
-    print("\n📄 PubMed Results:\n")
-    print(ascii_table)
-    print(f"\n✅ Results saved to '{filename}'")
+    # ✅ Only final message
+    print(f"✅ Results saved to '{filename}'")
